@@ -1,0 +1,58 @@
+import pygame
+pygame.init()
+screen = pygame.display.set_mode((1500,844))
+bg = pygame.image.load('background.jpg')
+bird = pygame.image.load('flappybird.png')
+pipetop = pygame.image.load('pipet1.png')
+pipebot = pygame.image.load('pipeb1.png')
+pipetop1 = pygame.image.load('pipet2.png')
+pipebot1 = pygame.image.load('pipeb2.png')
+birdy = 300
+pipetopx = 1100
+pipebotx = 1100
+pipetopx1 = 900
+pipebotx1 = 900
+while True:
+ if birdy < 634:
+     birdy = birdy + 0.3
+ if pipetopx > 100:
+     pipetopx = pipetopx - 0.5
+ else:
+     pipetopx = 900
+ if pipebotx > 100:
+     pipebotx = pipebotx - 0.5
+ else:
+     pipebotx = 900
+ if pipetopx1 > 100:
+     pipetopx1 = pipetopx1 - 0.5
+ else:
+     pipetopx1 = 1600
+ if pipebotx1 > 100:
+     pipebotx1 = pipebotx1 - 0.5
+ else:
+     pipebotx1 = 1600    
+ for event in pygame.event.get():
+  if event.type == pygame.QUIT:
+      pygame.quit()
+  if event.type == pygame.KEYDOWN:
+   if event.key == pygame.K_SPACE:
+             birdy = birdy - 30
+ screen.blit(bg,(0,0))
+ screen.blit(bird,(200,birdy))
+ screen.blit(pipetop,(pipetopx,0))
+ screen.blit(pipebot,(pipebotx,410))
+ screen.blit(pipetop1,(pipetopx1,0))
+ screen.blit(pipebot1,(pipebotx1,480))
+ pygame.display.update()
+ if pipetopx>200 and pipetopx<200+38:
+     if birdy < 200:
+         pygame.quit()
+ if pipebotx>200 and pipebotx<200+38:
+     if birdy>350:
+         pygame.quit()
+ if pipetopx1>300 and pipetopx1<300+38:
+     if birdy < 342:
+         pygame.quit()
+ if pipebotx1>270 and pipebotx1<270+38:
+     if birdy>400:
+         pygame.quit()
